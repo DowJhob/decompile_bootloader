@@ -39,7 +39,7 @@ void reverse_bytes_FUN_ffff9486(char *param_1, unsigned int param_2)
   *param_1 = param_2 >> 0x18;
   return;
 }
-void get_buf_size_FUN_ffff8bd8(void)
+void get_comm_buf_size_FUN_ffff8bd8(void)
 {
     int buf_size = 0x208;
   reverse_bytes_FUN_ffff9486(MSG_BUF_ffff95e8+1, buf_size);
@@ -96,7 +96,7 @@ void getCRC_FUN_ffff8b54(void)
 }
 
 
-int FUN_ffff93b6(char *param_1)
+int someREVERSE_FUN_ffff93b6(char *param_1)
 {
   return ((int)param_1[1] & 0xffU) + ((int)*param_1 & 0xffU) * 0x100;
 }
@@ -108,7 +108,7 @@ void getMEM_FUN_ffff8a78(void)
   int iVar4;
 
   uVar3 = sr_stack_ptr_FUN_ffff93ea(MSG_BUF_ffff95e8 + 1);
-  iVar4 = FUN_ffff93b6(MSG_BUF_ffff95e8 + 5);
+  iVar4 = someREVERSE_FUN_ffff93b6(MSG_BUF_ffff95e8 + 5);
 
   if (0x208 < iVar4 + 6U) {
     setFLASH_REG_FUN_ffff903c();
@@ -124,7 +124,7 @@ void getMEM_FUN_ffff8a78(void)
   return;
 }
 
-void FUN_ffff9454(char *param_1, char param_2)
+void someREVERSE_FUN_ffff9454(char *param_1, char param_2)
 {
   param_1[1] = param_2;
   *param_1 = param_2 >> 8;
@@ -132,33 +132,33 @@ void FUN_ffff9454(char *param_1, char param_2)
 }
 void getBUFF_SIZE_FUN_ffff88b4(void)
 {
-  FUN_ffff9454(MSG_BUF_ffff95e8 + 1, 0x258);
+  someREVERSE_FUN_ffff9454(MSG_BUF_ffff95e8 + 1, 0x258);
   SEND_ANSW_FUN_ffff8f38(0x84, 3);
   return;
 }
 
 
-char FUN_ffff9024(void)
+char setSTATUS_FUN_ffff9024(void)
 {
   *BYTE_ffff97f8 = 1;
   return 1;
 }
-void flash_FUN_ffff8890(void)
+void flash_disable_FUN_ffff8890(void)
 {
   setFLASH_REG_FUN_ffff903c();
   SEND_ANSW_FUN_ffff8f38(0xA1,1);
   return;
 }
-void flash_FUN_ffff8b20(void)
+void flash_enable_FUN_ffff8b20(void)
 {
   int iVar1;
 
-  iVar1 = FUN_ffff9024();
+  iVar1 = setSTATUS_FUN_ffff9024();
   if (iVar1 != 0) {
     SEND_ANSW_FUN_ffff8f38(0xA0, 0);
     return;
   }
-  flash_FUN_ffff8890();
+  flash_disable_FUN_ffff8890();
   return;
 }
 
@@ -167,13 +167,13 @@ void flash_FUN_ffff8b20(void)
 
 
 
-void flash_FUN_ffff8a24(void)
+void write_flash_buffer_flash_FUN_ffff8a24(void)
 {
   char *puVar1;
   int uVar2;
 
   puVar1 = MSG_BUF_ffff95e8 + 3;
-  uVar2 = FUN_ffff93b6(MSG_BUF_ffff95e8 + 3);
+  uVar2 = someREVERSE_FUN_ffff93b6(MSG_BUF_ffff95e8 + 3);
   memcpy_FUN_ffff9382
             (BYTE_ffff97fc + (0xFFF & uVar2), puVar1 + 2,
              *MSG_PAYLOAD_BUFF_ffff97f0 - 5);
@@ -182,7 +182,7 @@ void flash_FUN_ffff8a24(void)
 }
 
 
-void FUN_ffff88e0(void)
+void test_commit_flash_FUN_ffff88e0(void)
 {
   short sVar1;
 
@@ -192,8 +192,8 @@ void FUN_ffff88e0(void)
   int iVar6;
 
 
-  uVar3 = FUN_ffff93b6(MSG_BUF_ffff95e8 + 3);
-  FUN_ffff93b6(MSG_BUF_ffff95e8 + 5);
+  uVar3 = someREVERSE_FUN_ffff93b6(MSG_BUF_ffff95e8 + 3);
+  someREVERSE_FUN_ffff93b6(MSG_BUF_ffff95e8 + 5);
   iVar5 = CRC_FUN_ffff94ca(BYTE_ffff97fc + (0xFFF & uVar3), uVar4);
   iVar6 = sr_stack_ptr_FUN_ffff93ea(MSG_BUF_ffff95e8 + 7);
 
@@ -227,7 +227,7 @@ unsigned int * DAT_ffffa80c = (void*)0xffffa80C;
 unsigned int * DAT_ffffa810 = (void*)0xffffa810;
 unsigned int * DAT_ffffa890 = (void*)0xffffa890;
 unsigned int * DAT_ffff9584 = (void*)0xffff9584;
-unsigned int * DAT_ffffa910 = (void*)0xffffA910s;
+unsigned int * DAT_ffffa910 = (void*)0xffffA910;
 
 
 char block_offsets_DAT_ffff95e0[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40,0x80};
@@ -268,16 +268,16 @@ char erase_FUN_ffff8f84(int param_1)
   }
   return 0;
 }
-void FUN_ffff917c(char param_1)
+void some_delay_FUN_ffff917c(char param_1)
 {
 
-  **DAT_ffffa808 = **DAT_ffffa808 | 0x10;
+  **(char**)DAT_ffffa808 = **(char**)DAT_ffffa808 | 0x10;
   sleep_FUN_ffff94a6(0x3a);
-  **DAT_ffffa808 = **DAT_ffffa808 | 1;
+  **(char**)DAT_ffffa808 = **(char**)DAT_ffffa808 | 1;
   sleep_FUN_ffff94a6(param_1);
-  **DAT_ffffa808 = **DAT_ffffa808 & 0xfe;
+  **(char**)DAT_ffffa808 = **(char**)DAT_ffffa808 & 0xfe;
   sleep_FUN_ffff94a6(6);
-  **DAT_ffffa808 = **DAT_ffffa808 & 0xef;
+  **(char**)DAT_ffffa808 = **(char**)DAT_ffffa808 & 0xef;
   sleep_FUN_ffff94a6(6);
   return;
 }
@@ -303,18 +303,18 @@ LAB_ffff9328:
       uVar6 = 1;
       memcpy_FUN_ffff9382(DAT_ffffa810, param_2, 0x80);
       memcpy_FUN_ffff9382(DAT_ffffa890, param_2, 0x80);
-      *(*DAT_ffffa808) = (*(*DAT_ffffa808)) | 0x40;
+      **(char**)DAT_ffffa808 = **(char**)DAT_ffffa808 | 0x40;
       sleep_FUN_ffff94a6(2);
       do {
         memcpy_FUN_ffff9382(param_1, DAT_ffffa890, 0x80);
         if (uVar6 < 7) {
-          FUN_ffff917c(0x23);
+          some_delay_FUN_ffff917c(0x23);
         }
         else {
-          FUN_ffff917c(0xE5);
+          some_delay_FUN_ffff917c(0xE5);
         }
         iVar3 = 0;
-        **DAT_ffffa808 = **DAT_ffffa808 | 4;
+        **(char**)DAT_ffffa808 = **(char**)DAT_ffffa808 | 4;
         sleep_FUN_ffff94a6(5);
         bVar1 = false;
         do {
@@ -331,15 +331,15 @@ LAB_ffff9328:
           *(int *)(iVar3 + DAT_ffffa890) = ~uVar5 | uVar4;
           iVar3 = iVar3 + 4;
         } while (iVar3 != 0x80);
-        **DAT_ffffa808 = **DAT_ffffa808 & 0xfb;
+        **(char**)DAT_ffffa808 = **(char**)DAT_ffffa808 & 0xfb;
         sleep_FUN_ffff94a6(3);
         if (uVar6 < 7) {
           memcpy_FUN_ffff9382(param_1, DAT_ffffa910, iVar3);
-          FUN_ffff917c(0xc);
+          some_delay_FUN_ffff917c(0xc);
         }
         uVar6 = uVar6 + 1;
       } while ((bVar1) && (uVar6 != 0x3E8));
-      **DAT_ffffa808 = **DAT_ffffa808 & 0xbf;
+      **(char**)DAT_ffffa808 = **(char**)DAT_ffffa808 & 0xbf;
       sleep_FUN_ffff94a6(0x73);
       if (bVar1)
           goto LAB_ffff9328;
@@ -353,7 +353,7 @@ LAB_ffff9328:
   return uStack_24;
 }
 
-void erase_FUN_ffff8960(void)
+void commit_flash_FUN_ffff8960(void)
 {
   short sVar1;
 
@@ -365,14 +365,14 @@ void erase_FUN_ffff8960(void)
   int *puVar10;
 
   uVar4 = sr_stack_ptr_FUN_ffff93ea(MSG_BUF_ffff95e8 + 1);
-  uVar5 = FUN_ffff93b6(MSG_BUF_ffff95e8 + 3);
+  uVar5 = someREVERSE_FUN_ffff93b6(MSG_BUF_ffff95e8 + 3);
   puVar10 = BYTE_ffff97fc + (uVar5 & 0xFFF);
-  uVar6 = FUN_ffff93b6(MSG_BUF_ffff95e8 + 5);
+  uVar6 = someREVERSE_FUN_ffff93b6(MSG_BUF_ffff95e8 + 5);
   iVar7 = CRC_FUN_ffff94ca(puVar10,uVar6);
   iVar8 = sr_stack_ptr_FUN_ffff93ea(MSG_BUF_ffff95e8 + 7);
   if (iVar7 == iVar8) {
     iVar7 = erase_FUN_ffff91e0(uVar4, puVar10, uVar6);
-    FUN_ffff9454(MSG_BUF_ffff95e8 + 1, iVar7);
+    someREVERSE_FUN_ffff9454(MSG_BUF_ffff95e8 + 1, iVar7);
 
     if (iVar7 == 0) {
       setFLASH_REG_FUN_ffff903c();
@@ -400,40 +400,40 @@ void erase_FUN_ffff8960(void)
 
 
 
-int FUN_ffff9064(int *param_1)
+int magic_FUN_ffff9064(int *param_1)
 
 {
-  bool bVar1;
-  byte **ppbVar2;
-  undefined *puVar3;
+  char bVar1;
+
+
   int iVar4;
   int iVar5;
   int *piVar6;
   int iVar7;
 
-  iVar4 = (*(code *)PTR_erase_FUN_ffff9164)();
-  puVar3 = PTR_sleep_FUN_ffff916c;
-  ppbVar2 = DAT_ffff9168;
+  iVar4 = erase_FUN_ffff8f84();
+
+
   if (iVar4 != 0) {
     iVar4 = 1;
-    **DAT_ffff9168 = **DAT_ffff9168 | 0x40;
-    (*(code *)puVar3)(2);
-    *(undefined *)*DAT_ffff9170 = *DAT_ffff9174;
+    **(char **)DAT_ffffa808 = **(char **)DAT_ffffa808 | 0x40;
+    sleep_FUN_ffff94a6(2);
+    **(char **)DAT_ffffa80c = *DAT_ffffa800;
     do {
-      **ppbVar2 = **ppbVar2 | 0x20;
-      (*(code *)puVar3)(0x73);
-      **ppbVar2 = **ppbVar2 | 2;
-      (*(code *)puVar3)((int)DAT_ffff9162);
-      **ppbVar2 = **ppbVar2 & 0xfd;
-      (*(code *)puVar3)(0xc);
-      **ppbVar2 = **ppbVar2 & 0xdf;
-      (*(code *)puVar3)(0xc);
-      **ppbVar2 = **ppbVar2 | 8;
-      (*(code *)puVar3)(7);
+      **(char **)DAT_ffffa808 = **(char **)DAT_ffffa808 | 0x20;
+      sleep_FUN_ffff94a6(0x73);
+      **(char **)DAT_ffffa808 = **(char **)DAT_ffffa808 | 2;
+      sleep_FUN_ffff94a6(0x2CA5);
+      **(char **)DAT_ffffa808 = **(char **)DAT_ffffa808 & 0xfd;
+      sleep_FUN_ffff94a6(0xc);
+      **(char **)DAT_ffffa808 = **(char **)DAT_ffffa808 & 0xdf;
+      sleep_FUN_ffff94a6(0xc);
+      **(char **)DAT_ffffa808 = **(char **)DAT_ffffa808 | 8;
+      sleep_FUN_ffff94a6(7);
       piVar6 = param_1;
-      for (iVar7 = *DAT_ffff9178; iVar7 != 0; iVar7 = iVar7 + -4) {
+      for (iVar7 = *DAT_ffffa804; iVar7 != 0; iVar7 = iVar7 + -4) {
         *piVar6 = -1;
-        (*(code *)puVar3)(3);
+        sleep_FUN_ffff94a6(3);
         iVar5 = *piVar6;
         piVar6 = piVar6 + 1;
         if (iVar5 != -1) {
@@ -444,42 +444,57 @@ int FUN_ffff9064(int *param_1)
       bVar1 = false;
 LAB_ffff9116:
       iVar4 = iVar4 + 1;
-      **ppbVar2 = **ppbVar2 & 0xf7;
-      (*(code *)puVar3)(5);
+      **(char **)DAT_ffffa808 = **(char **)DAT_ffffa808 & 0xf7;
+      sleep_FUN_ffff94a6(5);
     } while ((bVar1) && (iVar4 != 100));
-    **ppbVar2 = **ppbVar2 & 0xbf;
-    (*(code *)puVar3)(0x73);
-    *(undefined *)*DAT_ffff9170 = 0;
+    **(char **)DAT_ffffa808 = **(char **)DAT_ffffa808 & 0xbf;
+    sleep_FUN_ffff94a6(0x73);
+    *(char *)*DAT_ffffa80c = 0;
     if (!bVar1) {
       return iVar4;
     }
   }
   return 0;
 }
-void FUN_ffff8830(void)
+void blank_flash_page_FUN_ffff8830(void)
 
 {
   short sVar1;
-  undefined *puVar2;
+
   int uVar3;
   int iVar4;
 
   uVar3 = sr_stack_ptr_FUN_ffff93ea(MSG_BUF_ffff95e8 + 1);
-  iVar4 = FUN_ffff9064(uVar3);
-  (*(code *)PTR_FUN_ffff8884)(PTR_DAT_ffff887c,iVar4);
-  puVar2 = PTR_SEND_ANSW_FUN_ffff8888;
+  iVar4 = magic_FUN_ffff9064(uVar3);
+  someREVERSE_FUN_ffff9454(MSG_BUF_ffff95e8 + 1, iVar4);
+
   if (iVar4 == 0) {
-    (*(code *)PTR_setFLASH_REG_FUN_ffff888c)();
+    setFLASH_REG_FUN_ffff903c();
     uVar3 = 1;
-    sVar1 = DAT_ffff8872;
+    sVar1 = 0xF2;
   }
   else {
     uVar3 = 3;
-    sVar1 = DAT_ffff8874;
+    sVar1 = 0xA5;
   }
-  (*(code *)puVar2)((int)sVar1,uVar3);
+  SEND_ANSW_FUN_ffff8f38(sVar1, uVar3);
   return;
 }
+
+
+
+
+
+void get_flash_buffer_size_FUN_ffff8bac(void)
+
+{
+  reverse_bytes_FUN_ffff9486(MSG_BUF_ffff95e8 + 1, 0x1000);
+  SEND_ANSW_FUN_ffff8f38(0x86, 5);
+  return;
+}
+
+
+
 struct CMD
 {
     unsigned int CMD;
@@ -488,17 +503,17 @@ struct CMD
 
 struct CMD cmd[12] = {
 {0x01010000, get_ver_FUN_ffff8af0},
-{0x05010000, get_buf_size_FUN_ffff8bd8},
-{0x06010000, },
+{0x05010000, get_comm_buf_size_FUN_ffff8bd8},
+{0x06010000, get_flash_buffer_size_FUN_ffff8bac},
 {0x02090000, getCRC_FUN_ffff8b54},
 {0x03070000, getMEM_FUN_ffff8a78},
 {0x04010000, getBUFF_SIZE_FUN_ffff88b4},
-{0x20010000, flash_FUN_ffff8b20},
-{0x21010000, flash_FUN_ffff8890},
-{0x22000000, flash_FUN_ffff8a24},
-{0x230B0000, FUN_ffff88e0},
-{0x240B0000, erase_FUN_ffff8960},
-{0x25050000, FUN_ffff8830}
+{0x20010000, flash_enable_FUN_ffff8b20},
+{0x21010000, flash_disable_FUN_ffff8890},
+{0x22000000, write_flash_buffer_flash_FUN_ffff8a24},
+{0x230B0000, test_commit_flash_FUN_ffff88e0},
+{0x240B0000, commit_flash_FUN_ffff8960},
+{0x25050000, blank_flash_page_FUN_ffff8830}
 };       // ffff951d
 
 

@@ -99,8 +99,7 @@ void setSERIAL_REG_FUN_ffff8ca4(void)
     return;
 }
 
-void FUN_ffff9368(void)
-
+void NOP_FUN_ffff9368(void)
 {
   return;
 }
@@ -122,7 +121,7 @@ void SEND_BYTE_FUN_ffff8e28(char param_1)
 
     *MSG_CHKSUMM_ACC_ffff97f4 = *MSG_CHKSUMM_ACC_ffff97f4 + param_1;
     while (-1 < *pbVar4) {                            // read echo
-      FUN_ffff9368();
+      NOP_FUN_ffff9368();
     }
     *SCI_TDR0_B = param_1;
     uVar5 = 0xFF;
@@ -136,7 +135,7 @@ void SEND_BYTE_FUN_ffff8e28(char param_1)
       uVar6 = uVar3 & 0xff;
       if (uVar6 == uVar5)
           goto LAB_ffff8eaa;
-      FUN_ffff9368();
+      NOP_FUN_ffff9368();
       *pbVar4 = *pbVar4 & 0xC7;
       uVar2 = *pbVar4 & 0x40;
     } while (uVar2 == 0);
