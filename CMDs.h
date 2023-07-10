@@ -5,7 +5,19 @@
 
 #include "FLASH.h"
 
-char verSTRING[20];
+extern char verSTRING[20];
+
+extern unsigned int * current_block_offset_DAT_ffffa800;
+extern unsigned int * DAT_ffffa804;
+extern unsigned int * ptr_FLASH_FLMCR1_DAT_ffffa808;
+extern unsigned char * FLASH_EBR_selector_DAT_ffffa80c;
+extern unsigned int * DAT_ffffa810;
+extern unsigned int * DAT_ffffa890;
+extern unsigned int * DAT_ffff9584;
+extern unsigned int * DAT_ffffa910;
+
+
+extern char block_offsets_DAT_ffff95e0[8];
 
 
 void memcpy_FUN_ffff9382(char *dst, char *src, int length);
@@ -55,18 +67,6 @@ void test_commit_flash_FUN_ffff88e0(void);
 
 
 
-unsigned int * current_block_offset_DAT_ffffa800 = (void*)0xffffa800;
-unsigned int * DAT_ffffa804 = (void*)0xffffa804;
-unsigned int * ptr_FLASH_FLMCR1_DAT_ffffa808 = (void*)0xffffa808;
-unsigned int * FLASH_EBR_selector_DAT_ffffa80c = (void*)0xffffa80C;
-unsigned int * DAT_ffffa810 = (void*)0xffffa810;
-unsigned int * DAT_ffffa890 = (void*)0xffffa890;
-unsigned int * DAT_ffff9584 = (void*)0xffff9584;
-unsigned int * DAT_ffffa910 = (void*)0xffffA910;
-
-
-char block_offsets_DAT_ffff95e0[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40,0x80};
-
 
 char erase_FUN_ffff8f84(int addr);
 void some_delay_FUN_ffff917c(char param_1);
@@ -87,26 +87,13 @@ void get_flash_buffer_size_FUN_ffff8bac(void);
 
 
 
-struct CMD
+typedef struct
 {
     unsigned int CMD;
     void (*FOO)();
-};
+}_CMD;
 
-struct CMD cmd[12] = {
-{0x01010000, get_ver_FUN_ffff8af0},
-{0x05010000, get_comm_buf_size_FUN_ffff8bd8},
-{0x06010000, get_flash_buffer_size_FUN_ffff8bac},
-{0x02090000, getCRC_FUN_ffff8b54},
-{0x03070000, getMEM_FUN_ffff8a78},
-{0x04010000, getBUFF_SIZE_FUN_ffff88b4},
-{0x20010000, flash_enable_FUN_ffff8b20},
-{0x21010000, flash_disable_FUN_ffff8890},
-{0x22000000, write_flash_buffer_flash_FUN_ffff8a24},
-{0x230B0000, test_commit_flash_FUN_ffff88e0},
-{0x240B0000, commit_flash_FUN_ffff8960},
-{0x25050000, blank_flash_page_FUN_ffff8830}
-};       // ffff951d
+extern _CMD __cmd[12];
 
 
 

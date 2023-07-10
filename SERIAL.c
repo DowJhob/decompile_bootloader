@@ -1,5 +1,13 @@
 #include "SERIAL.h"
 
+char MSG_BUF_ffff95e8[520];
+
+char MSG_CHKSUMM_ACC_ffff97f4;
+char MSG_HDR_END_FLAG_FFFF97F5 = 0;                     // = (char*)0xFFFF97F5;
+
+unsigned char *MSG_PAYLOAD_BUFF_ffff97f0;
+
+
 void sleep_FUN_ffff94a6(int param_1)
 
 {

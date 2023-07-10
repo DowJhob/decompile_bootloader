@@ -8,13 +8,13 @@
 
 #define BUFF_SIZE 520
 
-char MSG_BUF_ffff95e8[BUFF_SIZE];
+extern char MSG_BUF_ffff95e8[];
 
 
-char MSG_CHKSUMM_ACC_ffff97f4;
-char MSG_HDR_END_FLAG_FFFF97F5 = 0;                     // = (char*)0xFFFF97F5;
+extern char MSG_CHKSUMM_ACC_ffff97f4;
+extern char MSG_HDR_END_FLAG_FFFF97F5;                     // = (char*)0xFFFF97F5;
 
-unsigned char *MSG_PAYLOAD_BUFF_ffff97f0;
+extern unsigned char *MSG_PAYLOAD_BUFF_ffff97f0;
 
 
 

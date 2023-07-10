@@ -17,7 +17,7 @@
 
 
 unsigned int *FFFFA990h;
-unsigned int *CMD_TBL_ffff951c;
+char *CMD_TBL_ffff951c;
 
 void main(void)
 {
@@ -25,7 +25,7 @@ void main(void)
     short sVar2 = 0x00FF;
     short sVar3 = 0x00F0;
 
-    unsigned int *puVar5 = CMD_TBL_ffff951c;
+    char *puVar5 = CMD_TBL_ffff951c;
 
     char *pcVar8;
     char *pcVar9;

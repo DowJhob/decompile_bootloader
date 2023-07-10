@@ -4,8 +4,8 @@
 //#include "REG.h"
 #include "iodefine.h"
 
-unsigned char *BYTE_ffff97f8;
-unsigned char *BYTE_ffff97fc;
+extern unsigned char *BYTE_ffff97f8;
+extern unsigned char *BYTE_ffff97fc;
 
 void setFLASH_REG_FUN_ffff903c(void);
 
