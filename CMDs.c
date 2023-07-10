@@ -221,7 +221,7 @@ char erase_FUN_ffff8f84(int addr)
     int uVar4;
     char uVar5;
 
-    *DAT_ffffa800 = 0;
+    *current_block_offset_DAT_ffffa800 = 0;
     *DAT_ffffa804 = 0;
     if (*BYTE_ffff97f8 != '\0') {
         uVar5 = 0;
@@ -233,13 +233,13 @@ char erase_FUN_ffff8f84(int addr)
             {
 
                 *ptr_FLASH_FLMCR1_DAT_ffffa808 = FLASH.FLMCR1.BYTE;
-                piVar1 = DAT_ffffa80c;
-                *DAT_ffffa80c = FLASH.EBR1.BYTE;
+                piVar1 = FLASH_EBR_selector_DAT_ffffa80c;
+                *FLASH_EBR_selector_DAT_ffffa80c = FLASH.EBR1.BYTE;
                 if (7 < uVar5) {
                     *piVar1 = FLASH.EBR2.BYTE;
                 }
                 if (uVar3 == addr) {
-                    *DAT_ffffa800 = block_offsets_DAT_ffff95e0[uVar5 & 7];
+                    *current_block_offset_DAT_ffffa800 = block_offsets_DAT_ffff95e0[uVar5 & 7];
                     *DAT_ffffa804 = (uVar4 - uVar3) >> 2;
                 }
                 return 1;
@@ -353,7 +353,7 @@ void commit_flash_FUN_ffff8960(void)
     iVar7 = checkCRC_FUN_ffff94ca(puVar10, CRC);
     iVar8 = TWO_WORD_SWAP_FUN_ffff93ea(MSG_BUF_ffff95e8 + 7);
     if (iVar7 == iVar8) {
-        iVar7 = erase_FUN_ffff91e0(memADDR, puVar10, CRC);
+        iVar7 = erase_FUN_ffff91e0(memADDR, *puVar10, CRC);
         someREVERSE_FUN_ffff9454(MSG_BUF_ffff95e8 + 1, iVar7);
 
         if (iVar7 == 0) {
@@ -381,7 +381,7 @@ void commit_flash_FUN_ffff8960(void)
 
 int erase_page_by_addr_and_check__FUN_ffff9064(int addr)
 {
-    _Bool bVar1;
+    char bVar1;
 
 
     int pulses;
@@ -396,7 +396,7 @@ int erase_page_by_addr_and_check__FUN_ffff9064(int addr)
         pulses = 1;
         FLASH.FLMCR1.BYTE = FLASH.FLMCR1.BYTE | 0x40;
         sleep_FUN_ffff94a6(2);
-        **(char **)DAT_ffffa80c = *DAT_ffffa800;
+        **(char **)FLASH_EBR_selector_DAT_ffffa80c = *current_block_offset_DAT_ffffa800;
         do {
             FLASH.FLMCR1.BYTE = FLASH.FLMCR1.BYTE | 0x20;
             sleep_FUN_ffff94a6(0x73);
@@ -427,7 +427,7 @@ LAB_ffff9116:
         } while ((bVar1) && (pulses != 100));
         FLASH.FLMCR1.BYTE = FLASH.FLMCR1.BYTE & 0xbf;
         sleep_FUN_ffff94a6(0x73);
-        *(char *)*DAT_ffffa80c = 0;
+        *(char *)*FLASH_EBR_selector_DAT_ffffa80c = 0;
         if (!bVar1) {
             return pulses;
         }

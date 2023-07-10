@@ -55,10 +55,10 @@ void test_commit_flash_FUN_ffff88e0(void);
 
 
 
-unsigned int * DAT_ffffa800 = (void*)0xffffa800;
+unsigned int * current_block_offset_DAT_ffffa800 = (void*)0xffffa800;
 unsigned int * DAT_ffffa804 = (void*)0xffffa804;
 unsigned int * ptr_FLASH_FLMCR1_DAT_ffffa808 = (void*)0xffffa808;
-unsigned int * DAT_ffffa80c = (void*)0xffffa80C;
+unsigned int * FLASH_EBR_selector_DAT_ffffa80c = (void*)0xffffa80C;
 unsigned int * DAT_ffffa810 = (void*)0xffffa810;
 unsigned int * DAT_ffffa890 = (void*)0xffffa890;
 unsigned int * DAT_ffff9584 = (void*)0xffff9584;
