@@ -1,6 +1,10 @@
 
 #include "CMDs.h"
 
+#define FALSE 0
+#define TRUE !(FALSE)
+
+
 void memcpy_FUN_ffff9382(char *dst, char *src, int length)
 {
     char uVar1;
@@ -294,14 +298,14 @@ LAB_ffff9328:
                 iVar3 = 0;
                 FLASH.FLMCR1.BYTE = FLASH.FLMCR1.BYTE | 4;
                 sleep_FUN_ffff94a6(5);
-                bVar1 = false;
+                bVar1 = FALSE;
                 do {
                     *(int *)(addr + iVar3) = -1;
                     sleep_FUN_ffff94a6(3);
                     uVar5 = *(int *)(addr + iVar3);
                     uVar4 = *(int *)(iVar3 + DAT_ffffa810);
                     if (uVar5 != uVar4) {
-                        bVar1 = true;
+                        bVar1 = TRUE;
                     }
                     if (uVar6 < 7) {
                         *(int *)(iVar3 + DAT_ffffa910) = *(int *)(iVar3 + DAT_ffffa890) | uVar5;
@@ -312,7 +316,7 @@ LAB_ffff9328:
                 FLASH.FLMCR1.BYTE = FLASH.FLMCR1.BYTE & 0xfb;
                 sleep_FUN_ffff94a6(3);
                 if (uVar6 < 7) {
-                    memcpy_FUN_ffff9382(addr, DAT_ffffa910, iVar3);
+                    memcpy_FUN_ffff9382((unsigned char*)addr, DAT_ffffa910, iVar3);
                     some_delay_FUN_ffff917c(0xc);
                 }
                 uVar6 = uVar6 + 1;
@@ -375,12 +379,9 @@ void commit_flash_FUN_ffff8960(void)
 
 
 
-
-
-
 int erase_page_by_addr_and_check__FUN_ffff9064(int addr)
 {
-    char bVar1;
+    _Bool bVar1;
 
 
     int pulses;
@@ -409,16 +410,16 @@ int erase_page_by_addr_and_check__FUN_ffff9064(int addr)
             sleep_FUN_ffff94a6(7);
             piVar6 = addr;
             for (iVar7 = *DAT_ffffa804; iVar7 != 0; iVar7 = iVar7 + -4) {
-                *piVar6 = -1;
+                piVar6 = -1;
                 sleep_FUN_ffff94a6(3);
-                iVar5 = *piVar6;
+                iVar5 = piVar6;
                 piVar6 = piVar6 + 1;
                 if (iVar5 != -1) {
-                    bVar1 = True;
+                    bVar1 = TRUE;
                     goto LAB_ffff9116;
                 }
             }
-            bVar1 = false;
+            bVar1 = FALSE;
 LAB_ffff9116:
             pulses = pulses + 1;
             FLASH.FLMCR1.BYTE = FLASH.FLMCR1.BYTE & 0xf7;
