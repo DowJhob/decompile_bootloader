@@ -1,0 +1,27 @@
+[HIMDBVersion]
+2.0
+[DATABASE_VERSION]
+"1.2" 
+[CURRENT_PROJECT]
+"bootl" 
+[GENERAL_DATA]
+[BREAKPOINTS]
+[OPEN_WORKSPACE_FILES]
+"C:\WorkSpace\bootl\bootl\bootl.c" 
+"C:\WorkSpace\bootl\bootl\CMDs.c" 
+"C:\WorkSpace\bootl\bootl\CMDs.h" 
+"C:\WorkSpace\bootl\bootl\FLASH.c" 
+"C:\WorkSpace\bootl\bootl\FLASH.h" 
+"C:\WorkSpace\bootl\bootl\SERIAL.c" 
+"C:\WorkSpace\bootl\bootl\SERIAL.h" 
+[WORKSPACE_FILE_STATES]
+"C:\WorkSpace\bootl\bootl\CMDs.c" 0 0 2086 468 0 5 
+"C:\WorkSpace\bootl\bootl\CMDs.h" 156 156 1810 594 0 1 
+"C:\WorkSpace\bootl\bootl\FLASH.c" 208 208 1862 436 0 6 
+"C:\WorkSpace\bootl\bootl\FLASH.h" 182 182 1810 594 0 2 
+"C:\WorkSpace\bootl\bootl\SERIAL.c" 0 0 2086 468 0 4 
+"C:\WorkSpace\bootl\bootl\SERIAL.h" 208 208 1810 594 0 3 
+"C:\WorkSpace\bootl\bootl\bootl.c" -8 -31 1502 653 1 0 
+[LOADED_PROJECTS]
+"bootl" 
+[END]

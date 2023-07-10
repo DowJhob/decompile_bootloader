@@ -1,0 +1,35 @@
+; Project Generator Setup Infomation
+
+[PGS Version]
+Version=1.0
+
+[Toolchain]
+Toolchain=Renesas SuperH Standard
+Toolchain Name=Renesas SuperH RISC engine Standard Toolchain
+Toolchain Version=9.4.3.0
+
+[CPU]
+CPU Family=SuperH RISC engine
+CPU Series=SH-2
+CPU Type=SH7052F
+Operating Mode=Not Support
+Address Space=Not Support
+Multiple=Not Support
+Divide=Not Support
+
+[Project]
+Project Name=bootl
+Project Type=Application
+
+[Stack Settings]
+Stack Pointer Address=H'FFFFAFF0
+Stack Size=
+Stack Section Name=S
+Stack Section Address=
+Source File Name=stacksct.h
+Description=
+Default Stack Pointer Address=H'FFFFAFF0
+Default Stack Size=H'400
+
+[Initial Settings]
+Simulator I/O=enable

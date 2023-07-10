@@ -5,8 +5,9 @@ CONFIG -= qt
 
 SOURCES += \
         CMDs.c \
+        FLASH.c \
         SERIAL.c \
-        main.c
+        bootl.c
 
 HEADERS += \
     CMDs.h \

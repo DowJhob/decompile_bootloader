@@ -1,8 +1,8 @@
 
 #include "FLASH.h"
 
-unsigned char *BYTE_ffff97f8;
-unsigned char *BYTE_ffff97fc;
+unsigned char *BYTE_ffff97f8 = (unsigned char *)0xffff97f8;
+unsigned char *BYTE_ffff97fc = (unsigned char *)0xffff97fc;
 
 void setFLASH_REG_FUN_ffff903c()
 {
