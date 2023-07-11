@@ -6,13 +6,13 @@
 
 char verSTRING[20];
 
-unsigned int * current_block_offset_DAT_ffffa800 = (void*)0xffffa800;
-unsigned int * DAT_ffffa804 = (void*)0xffffa804;
+unsigned char current_block_offset_DAT_ffffa800;
+unsigned int some_Length_DAT_ffffa804;
 unsigned int * ptr_FLASH_FLMCR1_DAT_ffffa808 = (void*)0xffffa808;
 unsigned char * FLASH_EBR_selector_DAT_ffffa80c = (void*)0xffffa80C;
 unsigned int * DAT_ffffa810 = (void*)0xffffa810;
 unsigned int * DAT_ffffa890 = (void*)0xffffa890;
-unsigned int * DAT_ffff9584 = (void*)0xffff9584;
+unsigned int page_offsets_table_ffff9584 [] = {0x00, 0x1000, 0x2000, 0x3000, 0x4000, 0x5000, 0x6000, 0x7000, 0x8000, 0x10000, 0x20000, 0x40000};
 unsigned int * DAT_ffffa910 = (void*)0xffffA910;
 
 char block_offsets_DAT_ffff95e0[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40,0x80};
@@ -61,7 +61,7 @@ unsigned int TWO_WORD_SWAP_FUN_ffff93ea(char *param_1)
 {
     return ((param_1[1] + param_1[0] * 0x100) * 0x100 + param_1[2]) * 0x100 + param_1[3];
 }
-unsigned int checkCRC_FUN_ffff94ca(char *addr, int length)
+unsigned int checkCRC_FUN_ffff94ca(int addr, int length)
 {
     char cVar1;
     int uVar2;
@@ -71,7 +71,7 @@ unsigned int checkCRC_FUN_ffff94ca(char *addr, int length)
     while( 1 ) {
         length = length - 1;
         if (length == -1) break;
-        cVar1 = *addr;
+        cVar1 = addr;
         addr = addr + 1;
         uVar4 = uVar4 ^ cVar1;
         iVar3 = 8;
@@ -98,7 +98,7 @@ void getCRC_FUN_ffff8b54(void)
 
     uVar3 = TWO_WORD_SWAP_FUN_ffff93ea(MSG_BUF_ffff95e8 + 1);   // get addr
     uVar4 = TWO_WORD_SWAP_FUN_ffff93ea(puVar2 + 4);             // get size
-    uVar3 = checkCRC_FUN_ffff94ca((unsigned int*)uVar3, uVar4);
+    uVar3 = checkCRC_FUN_ffff94ca(uVar3, uVar4);
     reverse_bytes_FUN_ffff9486(puVar2, uVar3);
     SEND_ANSW_FUN_ffff8f38(0x82, 5);
     return;
@@ -149,7 +149,7 @@ void getBUFF_SIZE_FUN_ffff88b4(void)
 
 char setSTATUS_FUN_ffff9024(void)
 {
-    *BYTE_ffff97f8 = 1;
+    flash_enable_flag_BYTE_ffff97f8 = 1;
     return 1;
 }
 void flash_disable_FUN_ffff8890(void)
@@ -160,10 +160,10 @@ void flash_disable_FUN_ffff8890(void)
 }
 void flash_enable_FUN_ffff8b20(void)
 {
-    int iVar1;
+    int flash_enable_flag;
 
-    iVar1 = setSTATUS_FUN_ffff9024();
-    if (iVar1 != 0) {
+    flash_enable_flag = setSTATUS_FUN_ffff9024();
+    if (flash_enable_flag != 0) {
         SEND_ANSW_FUN_ffff8f38(0xA0, 0);
         return;
     }
@@ -184,7 +184,7 @@ void write_flash_buffer_flash_FUN_ffff8a24(void)
     puVar1 = MSG_BUF_ffff95e8 + 3;
     uVar2 = TWO_BYTE_REVERSE_FUN_ffff93b6(MSG_BUF_ffff95e8 + 3);
     memcpy_FUN_ffff9382
-            (BYTE_ffff97fc + (0xFFF & uVar2), puVar1 + 2,
+            ((char*)BYTE_ffff97fc + (0xFFF & uVar2), puVar1 + 2,
              *MSG_PAYLOAD_BUFF_ffff97f0 - 5);
     SEND_ANSW_FUN_ffff8f38(0xA2, 1);
     return;
@@ -234,15 +234,15 @@ char erase_FUN_ffff8f84(int addr)
     int uVar4;
     char uVar5;
 
-    *current_block_offset_DAT_ffffa800 = 0;
-    *DAT_ffffa804 = 0;
-    if (*BYTE_ffff97f8 != '\0') {
+    current_block_offset_DAT_ffffa800 = 0;
+    some_Length_DAT_ffffa804 = 0;
+    if (flash_enable_flag_BYTE_ffff97f8 != '\0') {             // if flash enable
         uVar5 = 0;
         iVar2 = 0;
         do {
-            uVar3 = *DAT_ffff9584 + iVar2;
+            uVar3 = *page_offsets_table_ffff9584 + iVar2;
             if ((uVar3 <= addr) &&
-                    (uVar4 = *((DAT_ffff9584 + iVar2) + 4), addr < uVar4))
+                    (uVar4 = *((page_offsets_table_ffff9584 + iVar2) + 4), addr < uVar4))
             {
 
                 *ptr_FLASH_FLMCR1_DAT_ffffa808 = FLASH.FLMCR1.BYTE;
@@ -252,8 +252,8 @@ char erase_FUN_ffff8f84(int addr)
                     *piVar1 = FLASH.EBR2.BYTE;
                 }
                 if (uVar3 == addr) {
-                    *current_block_offset_DAT_ffffa800 = block_offsets_DAT_ffff95e0[uVar5 & 7];
-                    *DAT_ffffa804 = (uVar4 - uVar3) >> 2;
+                    current_block_offset_DAT_ffffa800 = block_offsets_DAT_ffff95e0[uVar5 & 7];
+                    some_Length_DAT_ffffa804 = (uVar4 - uVar3) >> 2;
                 }
                 return 1;
             }
@@ -409,7 +409,7 @@ int erase_page_by_addr_and_check__FUN_ffff9064(int addr)
         pulses = 1;
         FLASH.FLMCR1.BYTE = FLASH.FLMCR1.BYTE | 0x40;
         sleep_FUN_ffff94a6(2);
-        **(char **)FLASH_EBR_selector_DAT_ffffa80c = *current_block_offset_DAT_ffffa800;
+        **(char **)FLASH_EBR_selector_DAT_ffffa80c = current_block_offset_DAT_ffffa800;
         do {
             FLASH.FLMCR1.BYTE = FLASH.FLMCR1.BYTE | 0x20;
             sleep_FUN_ffff94a6(0x73);
@@ -422,7 +422,7 @@ int erase_page_by_addr_and_check__FUN_ffff9064(int addr)
             FLASH.FLMCR1.BYTE = FLASH.FLMCR1.BYTE | 8;
             sleep_FUN_ffff94a6(7);
             piVar6 = addr;
-            for (iVar7 = *DAT_ffffa804; iVar7 != 0; iVar7 = iVar7 + -4) {
+            for (iVar7 = some_Length_DAT_ffffa804; iVar7 != 0; iVar7 = iVar7 + -4) {
                 piVar6 = -1;
                 sleep_FUN_ffff94a6(3);
                 iVar5 = piVar6;

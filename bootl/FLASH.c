@@ -1,12 +1,12 @@
 
 #include "FLASH.h"
 
-unsigned char *BYTE_ffff97f8 = (unsigned char *)0xffff97f8;
-unsigned char *BYTE_ffff97fc = (unsigned char *)0xffff97fc;
+unsigned char flash_enable_flag_BYTE_ffff97f8;
+unsigned char BYTE_ffff97fc;
 
 void setFLASH_REG_FUN_ffff903c()
 {
-    *BYTE_ffff97f8 = 0;
+    flash_enable_flag_BYTE_ffff97f8 = 0;
     FLASH.FLMCR1.BYTE = 0;
     //*FLASH_FCCS_B = 0;
 

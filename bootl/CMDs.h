@@ -7,13 +7,13 @@
 
 extern char verSTRING[20];
 
-extern unsigned int * current_block_offset_DAT_ffffa800;
-extern unsigned int * DAT_ffffa804;
+extern unsigned int page_offsets_table_ffff9584[];
+extern unsigned char current_block_offset_DAT_ffffa800;
+extern unsigned int some_Length_DAT_ffffa804;
 extern unsigned int * ptr_FLASH_FLMCR1_DAT_ffffa808;
 extern unsigned char * FLASH_EBR_selector_DAT_ffffa80c;
 extern unsigned int * DAT_ffffa810;
 extern unsigned int * DAT_ffffa890;
-extern unsigned int * DAT_ffff9584;
 extern unsigned int * DAT_ffffa910;
 
 
@@ -31,7 +31,7 @@ void reverse_bytes_FUN_ffff9486(char *param_1, unsigned int input);
 void get_comm_buf_size_FUN_ffff8bd8(void);
 
 unsigned int TWO_WORD_SWAP_FUN_ffff93ea(char *param_1);
-unsigned int checkCRC_FUN_ffff94ca(char *addr, int length);
+unsigned int checkCRC_FUN_ffff94ca(int addr, int length);
 
 void getCRC_FUN_ffff8b54(void);
 
