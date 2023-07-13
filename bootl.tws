@@ -21,7 +21,7 @@
 "C:\WorkSpace\bootl\bootl\FLASH.h" 182 182 1810 594 0 2 
 "C:\WorkSpace\bootl\bootl\SERIAL.c" 0 0 2086 468 0 4 
 "C:\WorkSpace\bootl\bootl\SERIAL.h" 208 208 1810 594 0 3 
-"C:\WorkSpace\bootl\bootl\bootl.c" -8 -31 1502 653 1 0 
+"C:\WorkSpace\bootl\bootl\bootl.c" 0 0 1502 653 0 0 
 [LOADED_PROJECTS]
 "bootl" 
 [END]

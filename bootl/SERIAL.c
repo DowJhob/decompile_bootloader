@@ -3,9 +3,9 @@
 char MSG_BUF_ffff95e8[520];
 
 char MSG_CHKSUMM_ACC_ffff97f4;
-char MSG_HDR_END_FLAG_FFFF97F5 = 0;                     // = (char*)0xFFFF97F5;
+char read_timeout_flag_FFFF97F5 = 0;                     // = (char*)0xFFFF97F5;
 
-unsigned char *MSG_PAYLOAD_BUFF_ffff97f0;
+unsigned char *MSG_PAYLOAD_BUFF_ALSO_MSG_LENGTH_ffff97f0;
 
 
 void sleep_FUN_ffff94a6(int param_1)
@@ -19,14 +19,13 @@ void sleep_FUN_ffff94a6(int param_1)
 
 char synchronous_read_fromUART_with_timeout_FUsub_FFFF8CD4()
 {
-    char MSG_HDR_END_FLAG_FFFF97F5 = 0;
+    read_timeout_flag_FFFF97F5 = 0;
     char cVar1;
 
-    char uVar5 = 0xFF;
+    unsigned char timeout_counter = 0xFF;
     do {
-        uVar5 = uVar5 - 1 & 0xff;
-        if (uVar5 == 0xFF) {
-            MSG_HDR_END_FLAG_FFFF97F5 = 1;
+        if (--timeout_counter == 0xFF) {
+            read_timeout_flag_FFFF97F5 = 1;
             return '\0';
         }
         sleep_FUN_ffff94a6(0x3a);
@@ -47,8 +46,8 @@ char synchronous_read_fromUART_with_timeout_FUsub_FFFF8CD4()
 void MSG_READ_FUN_ffff8d64()
 {
 
-    int iVar5;
-    int iVar6;
+    unsigned char iVar5;
+    unsigned char iVar6;
     char cVar8;
     int length;
     char *bufPTR = MSG_BUF_ffff95e8;
@@ -63,20 +62,20 @@ void MSG_READ_FUN_ffff8d64()
                     } while (iVar5 != 0xBE);                                                        // wait for 1st header byte
                     iVar5 = synchronous_read_fromUART_with_timeout_FUsub_FFFF8CD4();
                 } while (iVar5 != 0xEF);                                                            // wait for 2nd header byte
-                iVar5 = synchronous_read_fromUART_with_timeout_FUsub_FFFF8CD4();
-                *MSG_PAYLOAD_BUFF_ffff97f0 = iVar5 * 0x100;
-            } while (MSG_HDR_END_FLAG_FFFF97F5 != '\0');                            // end hdr!
+                iVar5 = synchronous_read_fromUART_with_timeout_FUsub_FFFF8CD4();               // read high byte
+                *MSG_PAYLOAD_BUFF_ALSO_MSG_LENGTH_ffff97f0 = iVar5 * 0x100;
+            } while (read_timeout_flag_FFFF97F5 != '\0');                            // wtf?! need delay between hi and low bytes?!
             iVar6 = synchronous_read_fromUART_with_timeout_FUsub_FFFF8CD4();         // length
             length = iVar6 + iVar5 * 0x100;
-            *MSG_PAYLOAD_BUFF_ffff97f0 = length;
-        } while ((MSG_HDR_END_FLAG_FFFF97F5 != '\0') || (0x208 < length));
-        while ((--length != -1 && (MSG_HDR_END_FLAG_FFFF97F5 == '\0')))
+            *MSG_PAYLOAD_BUFF_ALSO_MSG_LENGTH_ffff97f0 = length;
+        } while ((read_timeout_flag_FFFF97F5 != '\0') || (0x208 < length));
+        while ((--length != -1 && (read_timeout_flag_FFFF97F5 == '\0')))
         {
             *bufPTR = synchronous_read_fromUART_with_timeout_FUsub_FFFF8CD4();
             bufPTR++;
         }
-    } while (((MSG_HDR_END_FLAG_FFFF97F5 != '\0') ||
-              (cVar8 = synchronous_read_fromUART_with_timeout_FUsub_FFFF8CD4(), MSG_HDR_END_FLAG_FFFF97F5 != '\0')) ||
+    } while (((read_timeout_flag_FFFF97F5 != '\0') ||
+              (cVar8 = synchronous_read_fromUART_with_timeout_FUsub_FFFF8CD4(), read_timeout_flag_FFFF97F5 != '\0')) ||
              (MSG_CHKSUMM_ACC_ffff97f4 != (cVar8 * '\x02')));
     return;
 }

@@ -70,7 +70,7 @@ void test_commit_flash_FUN_ffff88e0(void);
 
 char erase_FUN_ffff8f84(int addr);
 void some_delay_FUN_ffff917c(char param_1);
-int erase_FUN_ffff91e0(unsigned int addr, unsigned int param_2, int param_3);
+int write_flash_FUN_ffff91e0(unsigned int addr, unsigned int param_2, int param_3);
 
 void commit_flash_FUN_ffff8960(void);
 

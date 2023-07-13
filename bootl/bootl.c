@@ -47,7 +47,7 @@ void main(void)
         } while (*pcVar9 != *MSG_BUF_ffff95e8);
 
         if ((pcVar9[1] == 0) ||
-                (sVar1 = sVar3, (pcVar9[1]) == *MSG_PAYLOAD_BUFF_ffff97f0))
+                (sVar1 = sVar3, (pcVar9[1]) == *MSG_PAYLOAD_BUFF_ALSO_MSG_LENGTH_ffff97f0))
         {
             get_ver_FUN_ffff8af0();
         }

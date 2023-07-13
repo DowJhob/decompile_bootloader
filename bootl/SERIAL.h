@@ -12,9 +12,9 @@ extern char MSG_BUF_ffff95e8[];
 
 
 extern char MSG_CHKSUMM_ACC_ffff97f4;
-extern char MSG_HDR_END_FLAG_FFFF97F5;                     // = (char*)0xFFFF97F5;
+extern char read_timeout_flag_FFFF97F5;                     // = (char*)0xFFFF97F5;
 
-extern unsigned char *MSG_PAYLOAD_BUFF_ffff97f0;
+extern unsigned char *MSG_PAYLOAD_BUFF_ALSO_MSG_LENGTH_ffff97f0;
 
 
 

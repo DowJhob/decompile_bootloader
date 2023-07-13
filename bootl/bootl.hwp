@@ -3,16 +3,16 @@
 [DATABASE_VERSION]
 "2.8" 
 [PROJECT_DETAILS]
-"bootl" "C:\WorkSpace\bootl\bootl" "C:\WorkSpace\bootl\bootl\bootl.hwp" "SuperH RISC engine" "Renesas SuperH Standard" "Application" "SH-2" "SH7052F" 
+"bootl" "D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl" "D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\bootl.hwp" "SuperH RISC engine" "Renesas SuperH Standard" "Application" "SH-2" "SH7052F" 
 [INFORMATION]
 "No project information available" 
 [TOOL_CHAIN]
 "Renesas SuperH RISC engine Standard Toolchain" "9.4.3.0" 
 [CONFIGURATIONS]
-"Debug" "C:\WorkSpace\bootl\bootl\Debug" 
-"Release" "C:\WorkSpace\bootl\bootl\Release" 
-"SimDebug_SH-2" "C:\WorkSpace\bootl\bootl\SimDebug_SH-2" 
-"SimDebug_SH-2_L" "C:\WorkSpace\bootl\bootl\SimDebug_SH-2_L" 
+"Debug" "D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\Debug" 
+"Release" "D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\Release" 
+"SimDebug_SH-2" "D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\SimDebug_SH-2" 
+"SimDebug_SH-2_L" "D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\SimDebug_SH-2_L" 
 [BUILD_PHASES]
 "Renesas OptLinker" 1 
 "Renesas SH Assembler" 1 
@@ -120,14 +120,14 @@
 "Object file" "Renesas OptLinker" "Renesas SH Assembler" 
 "Object file" "Renesas OptLinker" "Renesas SH C/C++ Compiler" 
 [PROJECT_FILES]
-"C:\WorkSpace\bootl\bootl\CMDs.c" "User" "C source file" 2 
-"C:\WorkSpace\bootl\bootl\CMDs.h" "User" "C header file" 2 
-"C:\WorkSpace\bootl\bootl\FLASH.c" "User" "C source file" 2 
-"C:\WorkSpace\bootl\bootl\FLASH.h" "User" "C header file" 2 
-"C:\WorkSpace\bootl\bootl\SERIAL.c" "User" "C source file" 2 
-"C:\WorkSpace\bootl\bootl\SERIAL.h" "User" "C header file" 2 
-"C:\WorkSpace\bootl\bootl\bootl.c" "User" "C source file" 2 
-"C:\WorkSpace\bootl\bootl\iodefine.h" "User" "C header file" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\CMDs.c" "User" "C source file" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\CMDs.h" "User" "C header file" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\FLASH.c" "User" "C source file" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\FLASH.h" "User" "C header file" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\SERIAL.c" "User" "C source file" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\SERIAL.h" "User" "C header file" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\bootl.c" "User" "C source file" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\iodefine.h" "User" "C header file" 2 
 [FOLDER]
 "Assembly source file" "Assembly source file" 
 "C header file" "C header file" 
@@ -142,9 +142,9 @@
 [ON_DEMAND_COMPONENTS_LOADED]
 [SYNC_SESSION_NAMES]
 [SESSIONS]
-"DefaultSession" "C:\WorkSpace\bootl\bootl\DefaultSession.hsf" 0 
-"SimSessionSH-2" "C:\WorkSpace\bootl\bootl\SimSessionSH-2.hsf" 0 
-"SimSessionSH-2_L" "C:\WorkSpace\bootl\bootl\SimSessionSH-2_L.hsf" 0 
+"DefaultSession" "D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\DefaultSession.hsf" 0 
+"SimSessionSH-2" "D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\SimSessionSH-2.hsf" 0 
+"SimSessionSH-2_L" "D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\SimSessionSH-2_L.hsf" 0 
 [GENERAL_DATA_SESSION_DefaultSession]
 [GENERAL_DATA_SESSION_SimSessionSH-2]
 [GENERAL_DATA_SESSION_SimSessionSH-2_L]
@@ -156,10 +156,10 @@
 [OPTIONS_Debug_Renesas SH C/C++ Compiler]
 "C source file" "0bf94e1c492b9d10" 2 
 "C++ source file" "0bf94e1c492b9d10" 2 
-"C:\WorkSpace\bootl\bootl\CMDs.c" "0f2e6aff7a2b9d10" 2 
-"C:\WorkSpace\bootl\bootl\FLASH.c" "07e5aed0693b9d10" 2 
-"C:\WorkSpace\bootl\bootl\SERIAL.c" "09a058016a2b9d10" 2 
-"C:\WorkSpace\bootl\bootl\bootl.c" "0bf94e1c492b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\CMDs.c" "0f2e6aff7a2b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\FLASH.c" "07e5aed0693b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\SERIAL.c" "09a058016a2b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\bootl.c" "0bf94e1c492b9d10" 2 
 [OPTIONS_Debug_Renesas SH C/C++ Library Generator]
 "Single Shot" "0bf94e1c492b9d10" 1 
 [OPTIONS_Debug]
@@ -179,10 +179,10 @@
 [OPTIONS_Release_Renesas SH C/C++ Compiler]
 "C source file" "0bf94e1c492b9d10" 2 
 "C++ source file" "0bf94e1c492b9d10" 2 
-"C:\WorkSpace\bootl\bootl\CMDs.c" "0f2e6aff7a2b9d10" 2 
-"C:\WorkSpace\bootl\bootl\FLASH.c" "07e5aed0693b9d10" 2 
-"C:\WorkSpace\bootl\bootl\SERIAL.c" "09a058016a2b9d10" 2 
-"C:\WorkSpace\bootl\bootl\bootl.c" "0bf94e1c492b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\CMDs.c" "0f2e6aff7a2b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\FLASH.c" "07e5aed0693b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\SERIAL.c" "09a058016a2b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\bootl.c" "0bf94e1c492b9d10" 2 
 [OPTIONS_Release_Renesas SH C/C++ Library Generator]
 "Single Shot" "0bf94e1c492b9d10" 1 
 [OPTIONS_Release]
@@ -192,10 +192,6 @@
 "[V|VERSION|6] [B|OPTIMIZE|0] [S|OUTPUT|^"$(CONFIGDIR)\$(PROJECTNAME).abs^"] [S|ROM|(D,R)] [B|LIST|1] [S|LIST|^"$(CONFIGDIR)\$(PROJECTNAME).map^"] [S|FORM|STYPE] [S|OUTPUT|^"$(CONFIGDIR)\$(PROJECTNAME).mot^"] [S|START|P,C,C$BSEC,C$DSEC,D(0FFFF8800)|B,R(0FFFF8000)|S(0FFFFABF0)]" 4 
 "[V|VERSION|7] [S|OUTPUTPATH|^"$(CONFIGDIR)\$(FILELEAF).obj^"] [B|LIST|0] [B|CHGINCPATH|1] [B|ERRORPATH|1] [S|CPU|SH2] [S|ENDIAN|BIG] [S|ROUND|ZERO] [B|DENORMALIZE|0]" 2 
 [EXCLUDED_FILES_Release]
-"C:\WorkSpace\bootl\bootl\dbsct.c" 
-"C:\WorkSpace\bootl\bootl\lowlvl.src" 
-"C:\WorkSpace\bootl\bootl\lowsrc.c" 
-"C:\WorkSpace\bootl\bootl\sbrk.c" 
 [LINKAGE_ORDER_Release]
 [GENERAL_DATA_CONFIGURATION_Release]
 [OPTIONS_SimDebug_SH-2_Renesas OptLinker]
@@ -206,10 +202,10 @@
 [OPTIONS_SimDebug_SH-2_Renesas SH C/C++ Compiler]
 "C source file" "0bf94e1c492b9d10" 2 
 "C++ source file" "0bf94e1c492b9d10" 2 
-"C:\WorkSpace\bootl\bootl\CMDs.c" "0f2e6aff7a2b9d10" 2 
-"C:\WorkSpace\bootl\bootl\FLASH.c" "07e5aed0693b9d10" 2 
-"C:\WorkSpace\bootl\bootl\SERIAL.c" "09a058016a2b9d10" 2 
-"C:\WorkSpace\bootl\bootl\bootl.c" "0bf94e1c492b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\CMDs.c" "0f2e6aff7a2b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\FLASH.c" "07e5aed0693b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\SERIAL.c" "09a058016a2b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\bootl.c" "0bf94e1c492b9d10" 2 
 [OPTIONS_SimDebug_SH-2_Renesas SH C/C++ Library Generator]
 "Single Shot" "0bf94e1c492b9d10" 1 
 [OPTIONS_SimDebug_SH-2]
@@ -229,10 +225,10 @@
 [OPTIONS_SimDebug_SH-2_L_Renesas SH C/C++ Compiler]
 "C source file" "0bf94e1c492b9d10" 2 
 "C++ source file" "0bf94e1c492b9d10" 2 
-"C:\WorkSpace\bootl\bootl\CMDs.c" "0f2e6aff7a2b9d10" 2 
-"C:\WorkSpace\bootl\bootl\FLASH.c" "07e5aed0693b9d10" 2 
-"C:\WorkSpace\bootl\bootl\SERIAL.c" "09a058016a2b9d10" 2 
-"C:\WorkSpace\bootl\bootl\bootl.c" "0bf94e1c492b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\CMDs.c" "0f2e6aff7a2b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\FLASH.c" "07e5aed0693b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\SERIAL.c" "09a058016a2b9d10" 2 
+"D:\Users\Bimbo\Documents\GitHub\forELM\bootloader\bootl\bootl.c" "0bf94e1c492b9d10" 2 
 [OPTIONS_SimDebug_SH-2_L_Renesas SH C/C++ Library Generator]
 "Single Shot" "0bf94e1c492b9d10" 1 
 [OPTIONS_SimDebug_SH-2_L]

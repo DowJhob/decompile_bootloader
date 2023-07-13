@@ -185,7 +185,7 @@ void write_flash_buffer_flash_FUN_ffff8a24(void)
     uVar2 = TWO_BYTE_REVERSE_FUN_ffff93b6(MSG_BUF_ffff95e8 + 3);
     memcpy_FUN_ffff9382
             ((char*)BYTE_ffff97fc + (0xFFF & uVar2), puVar1 + 2,
-             *MSG_PAYLOAD_BUFF_ffff97f0 - 5);
+             *MSG_PAYLOAD_BUFF_ALSO_MSG_LENGTH_ffff97f0 - 5);
     SEND_ANSW_FUN_ffff8f38(0xA2, 1);
     return;
 }
@@ -276,7 +276,7 @@ void some_delay_FUN_ffff917c(char param_1)
     sleep_FUN_ffff94a6(6);
     return;
 }
-int erase_FUN_ffff91e0(unsigned int addr, unsigned int beginBLOCKaddr, int param_3)
+int write_flash_FUN_ffff91e0(unsigned int addr, unsigned int beginBLOCKaddr, int param_3)
 {
     char bVar1;
     int *puVar2;
@@ -357,7 +357,7 @@ void commit_flash_FUN_ffff8960(void)
     int CRC;
     int iVar7;
     int iVar8;
-    char *puVar10;
+    char puVar10;
 
     memADDR = TWO_WORD_SWAP_FUN_ffff93ea(MSG_BUF_ffff95e8 + 1);             // ADDR
     blockSize = TWO_BYTE_REVERSE_FUN_ffff93b6(MSG_BUF_ffff95e8 + 3);          // SIZE
@@ -366,7 +366,7 @@ void commit_flash_FUN_ffff8960(void)
     iVar7 = checkCRC_FUN_ffff94ca(puVar10, CRC);
     iVar8 = TWO_WORD_SWAP_FUN_ffff93ea(MSG_BUF_ffff95e8 + 7);
     if (iVar7 == iVar8) {
-        iVar7 = erase_FUN_ffff91e0(memADDR, *puVar10, CRC);
+        iVar7 = write_flash_FUN_ffff91e0(memADDR, puVar10, CRC);
         someREVERSE_FUN_ffff9454(MSG_BUF_ffff95e8 + 1, iVar7);
 
         if (iVar7 == 0) {
